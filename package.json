@@ -1,0 +1,23 @@
+{
+  "name": "ms-navigator-secure",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Защищённый доступ к MS NAVIGATOR с одноразовыми ключами",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.6.1",
+    "helmet": "^8.3.0",
+    "pg": "^8.22.0"
+  }
+}

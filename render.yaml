@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: ms-navigator-secure
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_DAYS
+        value: 7
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_LOGIN
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false

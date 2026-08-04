@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f0e8">
+  <title>Вход — MS NAVIGATOR</title>
+  <style>
+    :root{--ink:#17324a;--muted:#607383;--paper:#f3f0e8;--surface:#fffdf8;--line:#dcd9cf;--sage:#6f8f7e;--clay:#c87552;--danger:#a3534c;--shadow:0 28px 80px rgba(28,49,63,.14)}
+    *{box-sizing:border-box}body{margin:0;min-width:320px;min-height:100vh;display:grid;place-items:center;padding:28px;color:var(--ink);background:radial-gradient(circle at 85% 12%,rgba(200,117,82,.18),transparent 26rem),linear-gradient(120deg,rgba(111,143,126,.16),transparent 45%),var(--paper);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    .layout{width:min(980px,100%);display:grid;grid-template-columns:1.05fr .95fr;border:1px solid rgba(23,50,74,.12);border-radius:30px;overflow:hidden;background:rgba(255,253,248,.8);box-shadow:var(--shadow)}
+    .intro{padding:54px;background:var(--ink);color:#fff;position:relative;overflow:hidden}.intro:after{content:"";position:absolute;width:280px;height:280px;right:-110px;bottom:-140px;border:42px solid rgba(255,255,255,.08);border-radius:50%}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:.08em}.mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--sage);font-size:13px;letter-spacing:0}
+    h1{margin:72px 0 18px;max-width:420px;font-size:clamp(36px,5vw,58px);line-height:1;letter-spacing:-.055em}.intro p{max-width:390px;margin:0;color:#cfdae2;line-height:1.65}.security{margin-top:52px;display:grid;gap:13px;color:#e8eef1;font-size:13px}.security span{display:flex;align-items:center;gap:10px}.security i{width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:rgba(111,143,126,.3);font-style:normal;color:#b9d7c7}
+    .panel{padding:48px 46px;background:var(--surface)}.eyebrow{color:var(--clay);font-size:11px;font-weight:850;letter-spacing:.16em;text-transform:uppercase}.panel h2{margin:10px 0 25px;font-size:30px;letter-spacing:-.04em}
+    .tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:5px;margin-bottom:26px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}.tab{border:0;border-radius:10px;padding:11px 12px;background:transparent;color:var(--muted);font:700 13px inherit;cursor:pointer}.tab.active{background:#fff;color:var(--ink);box-shadow:0 3px 14px rgba(23,50,74,.08)}
+    form{display:grid;gap:16px}.field{display:grid;gap:7px}.field label{font-size:12px;font-weight:800}.field small{color:var(--muted);font-size:11px;line-height:1.45}.input-wrap{position:relative}.field input{width:100%;height:48px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);outline:none;font:inherit;transition:border-color .15s,box-shadow .15s}.field input:focus{border-color:var(--sage);box-shadow:0 0 0 4px rgba(111,143,126,.12)}
+    .submit{height:50px;margin-top:4px;border:0;border-radius:12px;background:var(--ink);color:#fff;font:800 14px inherit;cursor:pointer;transition:transform .15s,opacity .15s}.submit:hover{transform:translateY(-1px)}.submit:disabled{opacity:.55;cursor:wait;transform:none}
+    .message{display:none;padding:12px 14px;border-radius:11px;font-size:12px;line-height:1.45}.message.visible{display:block}.message.error{background:#f8e7e4;color:var(--danger)}.message.success{background:#e4ece6;color:#456f5a}
+    .hidden{display:none}.foot{margin:22px 0 0;color:var(--muted);font-size:11px;line-height:1.5}
+    @media(max-width:760px){body{padding:14px}.layout{grid-template-columns:1fr;border-radius:22px}.intro{padding:30px}.intro h1{margin:38px 0 14px}.security{display:none}.panel{padding:32px 24px}}
+  </style>
+</head>
+<body>
+  <main class="layout">
+    <section class="intro">
+      <div class="brand"><span class="mark">MS</span> MS NAVIGATOR</div>
+      <h1>Рабочая база сценариев</h1>
+      <p>Доступ только для сотрудников с активным аккаунтом. Материалы открываются после проверки защищённой сессии.</p>
+      <div class="security">
+        <span><i>✓</i> Одноразовая активация по коду</span>
+        <span><i>✓</i> Мгновенная блокировка аккаунта</span>
+        <span><i>✓</i> Пароли не хранятся в открытом виде</span>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="eyebrow">Защищённый доступ</div>
+      <h2 id="formTitle">Войти в аккаунт</h2>
+      <div class="tabs" role="tablist">
+        <button class="tab active" type="button" data-mode="login">Вход</button>
+        <button class="tab" type="button" data-mode="activate">Первый вход</button>
+      </div>
+      <div id="message" class="message" role="alert"></div>
+
+      <form id="loginForm" autocomplete="on">
+        <div class="field">
+          <label for="loginUsername">Логин</label>
+          <input id="loginUsername" name="username" autocomplete="username" required maxlength="32" placeholder="Ваш логин">
+        </div>
+        <div class="field">
+          <label for="loginPassword">Пароль</label>
+          <input id="loginPassword" name="password" type="password" autocomplete="current-password" required maxlength="128" placeholder="Ваш пароль">
+        </div>
+        <button class="submit" type="submit">Войти</button>
+      </form>
+
+      <form id="activateForm" class="hidden" autocomplete="off">
+        <div class="field">
+          <label for="activateUsername">Придумайте логин</label>
+          <input id="activateUsername" name="username" autocomplete="username" required minlength="3" maxlength="32" pattern="[A-Za-z0-9._-]+" placeholder="Например: danil.ivanov">
+          <small>3–32 символа: латинские буквы, цифры, точка, дефис или _</small>
+        </div>
+        <div class="field">
+          <label for="accessCode">Одноразовый код от администратора</label>
+          <input id="accessCode" name="accessCode" required maxlength="40" spellcheck="false" placeholder="MSN-XXXX-XXXX-XXXX-XXXX">
+          <small>После успешной активации этот код больше никому не подойдёт.</small>
+        </div>
+        <div class="field">
+          <label for="activatePassword">Придумайте личный пароль</label>
+          <input id="activatePassword" name="password" type="password" autocomplete="new-password" required minlength="10" maxlength="128" placeholder="Не менее 10 символов">
+        </div>
+        <div class="field">
+          <label for="confirmPassword">Повторите пароль</label>
+          <input id="confirmPassword" type="password" autocomplete="new-password" required minlength="10" maxlength="128" placeholder="Повторите пароль">
+        </div>
+        <button class="submit" type="submit">Активировать аккаунт</button>
+      </form>
+      <p class="foot">Если аккаунт заблокирован или код не работает, обратитесь к администратору.</p>
+    </section>
+  </main>
+  <script>
+    const message = document.getElementById('message');
+    const loginForm = document.getElementById('loginForm');
+    const activateForm = document.getElementById('activateForm');
+
+    function showMessage(text, type = 'error') {
+      message.textContent = text;
+      message.className = `message visible ${type}`;
+    }
+
+    function clearMessage() {
+      message.textContent = '';
+      message.className = 'message';
+    }
+
+    document.querySelectorAll('[data-mode]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const activate = button.dataset.mode === 'activate';
+        document.querySelectorAll('[data-mode]').forEach((item) => item.classList.toggle('active', item === button));
+        loginForm.classList.toggle('hidden', activate);
+        activateForm.classList.toggle('hidden', !activate);
+        document.getElementById('formTitle').textContent = activate ? 'Активировать аккаунт' : 'Войти в аккаунт';
+        clearMessage();
+      });
+    });
+
+    async function submit(form, url, payload) {
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      clearMessage();
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Не удалось выполнить запрос.');
+        showMessage('Готово. Открываем систему…', 'success');
+        window.location.assign(data.redirect || '/app');
+      } catch (error) {
+        showMessage(error.message);
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = new FormData(loginForm);
+      submit(loginForm, '/api/auth/login', { username: form.get('username'), password: form.get('password') });
+    });
+
+    activateForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = new FormData(activateForm);
+      if (form.get('password') !== document.getElementById('confirmPassword').value) {
+        showMessage('Пароли не совпадают.');
+        return;
+      }
+      submit(activateForm, '/api/auth/activate', {
+        username: form.get('username'),
+        accessCode: form.get('accessCode'),
+        password: form.get('password')
+      });
+    });
+  </script>
+</body>
+</html>
