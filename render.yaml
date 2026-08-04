@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ms-navigator
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -c "from server import init_db; init_db()" && gunicorn server:app --bind 0.0.0.0:$PORT --workers 2 --threads 4
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.5
+      - key: DATABASE_URL
+        sync: false
+      - key: MS_ADMIN_LOGIN
+        value: admin
+      - key: MS_ADMIN_PASSWORD
+        sync: false
