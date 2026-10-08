@@ -281,6 +281,11 @@
       line-height: 1.2; text-transform: uppercase; letter-spacing: .13em; font-weight: 850;
     }
     .branch-card p + p { margin-top: 12px; }
+    .branch-subpath {
+      margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(23,50,74,.12);
+    }
+    .branch-subpath .branch-label { margin-bottom: 8px; }
+    .branch-subpath p + p { margin-top: 10px; }
     .flow-note {
       padding: 12px 16px; border-left: 4px solid #f0b429; border-radius: 0 10px 10px 0;
       background: #fff6d8; font-size: 14px; line-height: 1.45;
@@ -442,6 +447,7 @@
       .objection-overlay-label { font-size: 15px; }
       .objection-overlay-close { width: 42px; height: 42px; }
     }
+  
     .access-control {
       position: fixed; right: 18px; bottom: 18px; z-index: 50;
       display: flex; align-items: center; gap: 8px; padding: 7px;
@@ -705,67 +711,42 @@
         ]
       },
       {
-        id: 'leader', number: '02', title: 'Звонок руководителю / ЛПР', desc: 'Квалифицировать собственника и назначить видеовстречу.', accent: '#c87552', soft: '#f5e5dc',
+        id: 'leader', number: '02', title: 'Разговор с владельцем', desc: 'Объяснить изменения и назначить бесплатную видеодиагностику.', accent: '#c87552', soft: '#f5e5dc',
         stages: [
           {
             title: "Начало диалога",
-            goal: "Провести квалификацию собственника и предложить видеовстречу.",
+            goal: "Объяснить причину звонка и назначить 10-минутную видеодиагностику.",
             speech: `
         <div class="dialog-flow">
           <section class="dialog-strip">
             <div class="dialog-strip-head"><span class="dialog-strip-number">01</span><h3>Выход на владельца</h3></div>
             <div class="dialog-lines">
-              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>[ИМЯ], добрый день. Это [ИМЯ].</strong></p>
+              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>[ИМЯ КЛИЕНТА], здравствуйте! Это [ИМЯ МЕНЕДЖЕРА], специалист по геосервисам.</strong></p>
               <p class="client-line"><span class="speaker-label">Клиент</span><strong>Здравствуйте.</strong></p>
-              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>По голосу слышу, что не узнали... Это [ИМЯ], специалист по </strong><strong>геосервисам</strong><strong>. Мы с вами полгода назад созванивались по поводу корректировок на картах, помните?)))</strong></p>
-              <p class="client-line"><span class="speaker-label">Клиент</span><strong>Нет, не помню.</strong></p>
-              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Ничего страшного, я напомню.</strong></p>
-              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Вы ведь владелец компании, правильно?</strong></p>
-              <div class="branch-grid">
-                <div class="branch-card no full"><span class="branch-label">Если «нет»</span><p class="manager-note"><span class="speaker-label">Подсказка менеджеру</span><strong>Уточняем, кто отвечает за онлайн-видимость.</strong></p></div>
-              </div>
+              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>По голосу слышу — не узнали. Мы полгода назад обсуждали вашу компанию в Яндексе. Звоню в этот раз, чтобы уже договориться о встрече!</strong></p>
+              <p class="client-line"><span class="speaker-label">Клиент</span><strong>О какой встрече?</strong></p>
+              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Сейчас объясню. Можете говорить? Минуту буквально.</strong></p>
             </div>
           </section>
           <section class="dialog-strip">
             <div class="dialog-strip-head"><span class="dialog-strip-number">02</span><h3>Причина звонка</h3></div>
             <div class="dialog-lines">
-              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Я по делу. Сейчас смотрим компании по вашему направлению на Дальнем Востоке и сравниваем, как они представлены в Яндекс Картах относительно конкурентов.</strong></p>
-              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Мы проверяли профиль вашей организации: у вас есть несколько факторов, которые мешают вам привлекать клиентов из Яндекс Карт.</strong></p>
+              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>[ИМЯ КЛИЕНТА], я звоню не просто так. Ваша компания попала в список организаций, у которых Яндекс фактически обнулил бизнес-настройки в карточке. Это следствие глобального обновления алгоритмов, которое Яндекс анонсировал месяц назад.</strong></p>
+              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Сейчас все компании, ваши конкуренты в том числе, активно переходят на новый формат размещения. Те, кто не успеет до конца сентября, автоматически теряют видимость.</strong></p>
+              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Восстановить свои позиции в выдаче потом будет очень сложно.</strong></p>
             </div>
           </section>
           <section class="dialog-strip">
-            <div class="dialog-strip-head"><span class="dialog-strip-number">03</span><h3>Важность видимости</h3></div>
+            <div class="dialog-strip-head"><span class="dialog-strip-number">03</span><h3>Предложение встречи</h3></div>
             <div class="dialog-lines">
-              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Скажите, вам важно, как компания отображается в Яндексе и 2ГИС?</strong></p>
-              <div class="branch-grid">
-                <div class="branch-card yes"><span class="branch-label">Если «да / скорее да»</span><p class="manager-note"><span class="speaker-label">Подсказка менеджеру</span><strong>Идём дальше.</strong></p></div>
-                <div class="branch-card no"><span class="branch-label">Если «нет / неважно»</span><p><span class="speaker-label">Менеджер</span><strong>Тогда уточню: текущий поток с Яндекса полностью устраивает?</strong></p><p><span class="speaker-label">Менеджер</span><strong>А если ещё 2–3 клиента с Яндекса начнут приходить, не помешают?</strong></p></div>
-              </div>
-              <p class="flow-note"><span class="speaker-label">Подсказка менеджеру</span><strong>После этого вопроса вне зависимости от ответа идём дальше.</strong></p>
-            </div>
-          </section>
-          <section class="dialog-strip">
-            <div class="dialog-strip-head"><span class="dialog-strip-number">04</span><h3>Контроль позиций</h3></div>
-            <div class="dialog-lines">
-              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Вы отслеживаете позиции компании по ключевым запросам?</strong></p>
-              <div class="branch-grid">
-                <div class="branch-card no"><span class="branch-label">Если «нет»</span><p><span class="speaker-label">Менеджер</span><strong>Тогда вам точно будет полезно. Вы очень далеко, и профиль работает не на полную.</strong></p></div>
-                <div class="branch-card yes"><span class="branch-label">Если «да»</span><p><span class="speaker-label">Менеджер</span><strong>Тогда вы сами видели. Там есть нюансы, и их можно поправить.</strong></p></div>
-              </div>
-            </div>
-          </section>
-          <section class="dialog-strip">
-            <div class="dialog-strip-head"><span class="dialog-strip-number">05</span><h3>Переход к встрече</h3></div>
-            <div class="dialog-lines">
-              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>По вашей карточке видно, что основные настройки не заточены на увеличение охватов. Из-за этого вы теряете десятки горячих клиентов каждый месяц.</strong></p>
-              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>А самое интересное — Яндекс анонсировал глобальные изменения в Картах. Из-за этого компании, которые не разберутся в изменениях, скорее всего, начнут уступать тем, кто раньше освоит новые возможности.</strong></p>
-              <p class="dialog-line closing-line"><span class="speaker-label">Менеджер</span><strong>Я могу показать, что именно у вас забирает трафик. Мне потребуется 10–15 минут и демонстрация экрана, чтобы рассказать, как использовать Яндекс Карты для увеличения выручки. Это было бы вам полезно?</strong></p>
-              <div class="branch-grid"><div class="branch-card yes full"><span class="branch-label">Если «да»</span><p class="manager-note"><span class="speaker-label">Подсказка менеджеру</span><strong>Назначаем встречу.</strong></p></div></div>
+              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Я предлагаю не встречу в классическом понимании, а 10-минутную бесплатную диагностику вашего профиля с демонстрацией экрана. Я покажу, какие именно настройки отключились и что пришло им на смену.</strong></p>
+              <p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Даже если вы решите ничего не менять — вы хотя бы будете принимать решение осознанно, а не вслепую.</strong></p>
+              <p class="dialog-line closing-line"><span class="speaker-label">Менеджер</span><strong>Подскажите, сегодня или завтра у вас получится?</strong></p>
             </div>
           </section>
         </div>
             `,
-            listen: "ответы собственника на квалифицирующие вопросы и готовность выйти на встречу."
+            listen: "готовность собственника выделить время на бесплатную диагностику профиля."
           },
           {
             title: "Выбираем время",
@@ -774,7 +755,7 @@
         <div class="dialog-flow schedule-flow">
           <section class="dialog-strip">
             <div class="dialog-strip-head"><span class="dialog-strip-number">01</span><h3>Выбираем день</h3></div>
-            <div class="dialog-lines"><p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>[ИМЯ], тогда давайте сразу зафиксируем удобное время.</strong></p><p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Вам удобно сегодня?</strong></p><p class="flow-note"><span class="speaker-label">Подсказка менеджеру</span><strong>Если нет, предлагаем завтра.</strong></p></div>
+            <div class="dialog-lines"><p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>[ИМЯ КЛИЕНТА], тогда давайте сразу зафиксируем удобное время.</strong></p><p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Вам удобно сегодня?</strong></p><p class="flow-note"><span class="speaker-label">Подсказка менеджеру</span><strong>Если нет, предлагаем завтра.</strong></p></div>
           </section>
           <section class="dialog-strip">
             <div class="dialog-strip-head"><span class="dialog-strip-number">02</span><h3>Даём два окна</h3></div>
@@ -790,11 +771,11 @@
           </section>
           <section class="dialog-strip">
             <div class="dialog-strip-head"><span class="dialog-strip-number">05</span><h3>Подтверждаем участие</h3></div>
-            <div class="dialog-lines"><p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Хорошо, [ИМЯ], повспоминайте сейчас, пожалуйста, нет ли у вас запланированных дел или каких-то обязательств в 18:00?</strong></p><p class="flow-note"><span class="speaker-label">Подсказка менеджеру</span><strong>Делаем лёгкую паузу, даём осмыслить.</strong></p><p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Вы точно сможете спокойно посмотреть демонстрацию экрана 10–15 минут?</strong></p><p class="client-line"><span class="speaker-label">Клиент</span><strong>Да.</strong></p></div>
+            <div class="dialog-lines"><p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Хорошо, [ИМЯ КЛИЕНТА], проверьте сейчас, пожалуйста, нет ли у вас запланированных дел или каких-то обязательств в 18:00 — точно в это время получится?</strong></p><p class="flow-note"><span class="speaker-label">Подсказка менеджеру</span><strong>Делаем лёгкую паузу, даём осмыслить.</strong></p></div>
           </section>
           <section class="dialog-strip">
             <div class="dialog-strip-head"><span class="dialog-strip-number">06</span><h3>Фиксируем договорённость</h3></div>
-            <div class="dialog-lines"><p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Давайте напомню: на встрече я покажу конкретно по вашей компании, что изменится в Яндекс Картах, как сейчас выглядят конкуренты и какие возможности доступны в новом формате, а также расскажу, что имеет смысл делать именно вам.</strong></p><p class="dialog-line closing-line"><span class="speaker-label">Менеджер</span><strong>Ещё раз фиксируем: сегодня в 18:00, Яндекс Телемост, ссылка придёт на этот номер.</strong></p><p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Если вдруг планы изменятся, просто заранее напишите мне, чтобы мы перенесли время.</strong></p><p class="client-line"><span class="speaker-label">Клиент</span><strong>Хорошо.</strong></p><p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>[ИМЯ], пока не забыл(а): вы обязательно на встречу выходите. Я вам после неё ещё отправлю чек-лист по ошибкам в профиле, которые убивают конверсию с карт. 100% будет полезно.</strong><br />До встречи!</p></div>
+            <div class="dialog-lines"><p class="dialog-line"><span class="speaker-label">Менеджер</span><strong>Давайте напомню: на встрече я покажу конкретно по вашей компании, что изменится в Яндекс Картах, как сейчас выглядят конкуренты и какие возможности доступны в новом формате, а также расскажу, что имеет смысл делать именно вам.</strong></p><p class="client-line"><span class="speaker-label">Клиент</span><strong>Хорошо.</strong></p><p class="dialog-line closing-line"><span class="speaker-label">Менеджер</span><strong>[ИМЯ КЛИЕНТА], пока не забыл(а): вы обязательно на встречу выходите. Я вам после неё ещё отправлю чек-лист по ошибкам в профиле 2ГИС и Яндекс Карт, из-за которых вы теряете клиентов. 100% будет полезно. До встречи!</strong></p></div>
           </section>
         </div>
             `,
@@ -811,7 +792,7 @@
         <p><span class="speaker-label">Менеджер</span><strong>Вы имеете в виду, что вам неинтересно рассматривать рекламу в Яндексе? Какие-то коммерческие предложения сейчас? Верно?</strong></p>
         <p class="client-answer"><span class="speaker-label">Клиент</span><strong>Да.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>[ИМЯ], а я вам и не по рекламе звоню.</strong></p>
-        <p><span class="speaker-label">Менеджер</span><strong>Мы проводим проверку компаний в поисковике. Яндекс анонсировал глобальные изменения в Картах.</strong></p>
+        <p><span class="speaker-label">Менеджер</span><strong>Мы проводим проверку компаний, и Яндекс анонсировал глобальные изменения в Картах.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>Бесплатно теперь остаётся базовая визитка, а полноценные инструменты развития профиля подключаются отдельно.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>Из-за этого компании, которые не разберутся в изменениях, скорее всего, потеряют свои позиции.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>И наоборот: те, кто быстрее всех вникнет в обновления, могут с лёгкостью вырваться вперёд.</strong></p>
@@ -845,7 +826,7 @@
         <p><span class="speaker-label">Менеджер</span><strong>Сейчас, для того чтобы вашу компанию найти по запросу «[КАТЕГОРИЯ] + [ГОРОД]», нужно сильно постараться.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>Это связано с тем, что большинство ваших конкурентов уже правильно настроили профили, а у вас до сих пор настройки не обновлены. Клиентская активность у вас в городе высокая, только вам она сейчас не достаётся из-за низкой выдачи.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>Я вам поэтому и предлагаю встретиться по видеосвязи, чтобы вы всё увидели своими глазами.</strong></p>
-        <p><span class="speaker-label">Менеджер</span><strong>Встреча занимает всего 10–15 минут. Расскажу только о самых важных вещах, которые касаются конкретно вашего бизнеса.</strong></p>
+        <p><span class="speaker-label">Менеджер</span><strong>Встреча занимает всего 5–7 минут. Расскажу только о самых важных вещах, которые касаются конкретно вашего бизнеса.</strong></p>
         <p class="closing-question"><span class="speaker-label">Менеджер</span><strong>Получится выбрать время?</strong></p>
       
             `
@@ -860,7 +841,7 @@
         <p class="client-answer"><span class="speaker-label">Клиент</span><strong>Да.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>Я по другому вопросу звоню. Не по рекламе! Консультацию и аудит размещения вашей компании мы предоставляем абсолютно бесплатно. Это ни к чему вас не обязывает.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>Напротив, покажу, что многими бесплатными, но эффективными инструментами от Яндекса вы не пользуетесь. Предложения на коммерческой основе тоже есть. Если нужно, я смогу на встрече вас проконсультировать. Именно поэтому и предлагаю созвониться по видеосвязи, чтобы вам прежде всего было удобно и понятно.</strong></p>
-        <p class="closing-question"><span class="speaker-label">Менеджер</span><strong>Найдёте всё-таки время завтра или сегодня? По времени, ещё раз повторю, 10–15 минут максимум.</strong></p>
+        <p class="closing-question"><span class="speaker-label">Менеджер</span><strong>Найдёте всё-таки время завтра или сегодня? По времени, ещё раз повторю, 5–7 минут максимум.</strong></p>
       
             `
           },
@@ -874,7 +855,7 @@
         <p class="client-answer"><span class="speaker-label">Клиент</span><strong>Да.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>По тому, как вы это говорите, я понимаю, что эта компания вам так и не компенсировала потраченные нервы и время…</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>А давайте мы компенсируем! Мы сделаем вам хорошие условия и хорошую стоимость в качестве компенсации за негативный опыт с другой организацией, потому что они, возможно, недобросовестно выполняют свои обязанности и недостойны быть на рынке. А мы сделаем вот такой красивый жест ради вас.</strong></p>
-        <p><span class="speaker-label">Менеджер</span><strong>Предлагаю встретиться на 10–15 минут и обсудить характер взаимодействия. В любом случае встреча вас ни к чему не обязывает.</strong></p>
+        <p><span class="speaker-label">Менеджер</span><strong>Предлагаю встретиться на 5–7 минут и обсудить характер взаимодействия. В любом случае встреча вас ни к чему не обязывает.</strong></p>
         <p class="closing-question"><span class="speaker-label">Менеджер</span><strong>Получится выбрать время?</strong></p>
       
             `
@@ -888,7 +869,7 @@
         <p><span class="speaker-label">Менеджер</span><strong>[ИМЯ], вы всё правильно говорите.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>Конечно, я всё отправлю. Только здесь есть нюанс: общая информация не покажет, как изменения затронут вашу компанию. Всё зависит от категории бизнеса и региона, а конкурентная ситуация у всех разная.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>На видеовстрече я покажу именно ваш профиль, конкурентов и те возможности, которые доступны конкретно вам. После этого отправлю уже предметные материалы, а не общий текст.</strong></p>
-        <p class="closing-question"><span class="speaker-label">Менеджер</span><strong>[ИМЯ], всё-таки настаиваю на встрече. Будет полезно! Может, найдётся у вас 10–15 минут сегодня или завтра?</strong></p>
+        <p class="closing-question"><span class="speaker-label">Менеджер</span><strong>[ИМЯ], всё-таки настаиваю на встрече. Будет полезно! Может, найдётся у вас 5 минут сегодня или завтра?</strong></p>
       
             `
           },
@@ -915,7 +896,7 @@
         <p><span class="speaker-label">Менеджер</span><strong>То, что у вас есть маркетолог, — это очень положительный момент. Но, надо полагать, вы всё равно следите за ситуацией в маркетинге.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>Хотя бы для того, чтобы иметь возможность влиять на вашего нынешнего маркетолога и следить за тем, насколько компетентно он выполняет свои обязанности. Правильно ведь?</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>Наш искренний совет каждому руководителю с учётом опыта работы с большим количеством компаний: вначале обязательно лично ознакомиться с материалом, а дальше уже поговорить с маркетологом на эту тему.</strong></p>
-        <p class="closing-question"><span class="speaker-label">Менеджер</span><strong>[ИМЯ], найдёте же сегодня или завтра 10–15 минут для звонка?</strong></p>
+        <p class="closing-question"><span class="speaker-label">Менеджер</span><strong>[ИМЯ], найдёте же сегодня или завтра 5–7 минут для звонка?</strong></p>
       
             `
           },
@@ -930,7 +911,7 @@
         <p><span class="speaker-label">Менеджер</span><strong>А по поводу Яндекса: вы наверняка заметили, что компания активно развивается в последнее время. Он уже везде: это Такси, Поиск, Карты, Музыка, Доставка. И пользователей в России уже больше 100 млн, а с каждым днём становится всё больше.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>Если посмотреть, то в [ГОРОД] полно компаний, у которых Яндекс тоже отлично работает и привлекает новых клиентов. Просто он сложный. Его нужно правильно настроить, чтобы увидеть реальные результаты. Мы именно это предлагаем начать делать. Причём привлечение клиентов из Яндекса пока что обходится в десятки раз дешевле.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>[ИМЯ], если ещё и из Яндекса к вам начнут обращаться клиенты, не помешают же?</strong></p>
-        <p class="closing-question"><span class="speaker-label">Менеджер</span><strong>Найдёте сегодня или завтра 10–15 минут на консультацию?</strong></p>
+        <p class="closing-question"><span class="speaker-label">Менеджер</span><strong>Найдёте сегодня или завтра 5 минут на консультацию?</strong></p>
       
             `
           },
@@ -943,7 +924,7 @@
         <p><span class="speaker-label">Менеджер</span><strong>[ИМЯ], так я именно поэтому и предлагаю созвониться, чтобы конкретно, по пунктам пройтись по вашей компании в Яндексе и подсветить вам изменения, которые касаются вашей сферы.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>Понимаю, что у вас загруженный график. Но тут, видите, какое дело… У каждой карточки в Яндексе свои причины и ошибки. Нужно разбираться, проводить аудит.</strong></p>
         <p><span class="speaker-label">Менеджер</span><strong>А я так понимаю по вашей реакции, [ИМЯ], что вы очень давно, наверное, не видели, что у вас там происходит на странице? Там у вас много чего нужно подкорректировать. Потому что в таком виде это вам не помогает привлекать новых клиентов, а, напротив, скорее даже мешает…</strong></p>
-        <p class="closing-question"><span class="speaker-label">Менеджер</span><strong>[ИМЯ], звонок займёт 10–15 минут. Он абсолютно ни к чему вас не обязывает. В любом случае только вам решать, что нужно отображать, а что нет. Если не захотите ничего менять, так всё и оставим. Но зато будете хотя бы в курсе. Может, всё-таки найдётся 10–15 минут сегодня или завтра?</strong></p>
+        <p class="closing-question"><span class="speaker-label">Менеджер</span><strong>[ИМЯ], звонок займёт 5–7 минут. Он абсолютно ни к чему вас не обязывает. В любом случае только вам решать, что нужно отображать, а что нет. Если не захотите ничего менять, так всё и оставим. Но зато будете хотя бы в курсе. Может, всё-таки найдётся 5 минут сегодня или завтра?</strong></p>
       
             `
           }
@@ -1388,6 +1369,7 @@
     setMode('call');
     renderHome();
   </script>
+
   <script>
     async function verifyProtectedAccount() {
       try {
